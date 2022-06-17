@@ -1,4 +1,4 @@
-# Unity Smooth Follow
+# Unity Smooth Follow with Lerping
 
 Demo: https://markaelie.github.io/smoothfollow
 <br>
