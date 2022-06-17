@@ -4,8 +4,8 @@ Demo: https://markaelie.github.io/smoothfollow
 <br>
 Video: https://www.youtube.com/watch?v=Pyq96JsfiyA
 
-```js
-var copy = require('copy');
+```c#
+transform.position = Vector3.Lerp(transform.position, player.transform.position + offset, speed);
 ```
 
 
