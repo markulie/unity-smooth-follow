@@ -3,8 +3,10 @@
   
   public class UrlButton : MonoBehaviour
   {
+    public string url;
+
       public void OpenURL()
       {
-          Application.OpenURL("https://github.com/markaelie");
+          Application.OpenURL(url);
       }
   }
