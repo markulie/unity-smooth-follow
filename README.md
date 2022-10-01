@@ -1,34 +1,47 @@
 # Unity Smooth Follow with Lerp
 
-Demo: https://markaelie.github.io/smoothfollow
+Demo: https://markulie.github.io/smoothfollow.html
 <br>
 Video: https://www.youtube.com/watch?v=Pyq96JsfiyA
 
 ```c#
+using UnityEngine;
+using UnityEngine.UI;
+
+[RequireComponent(typeof(SphereCollider))]
 public class SmoothFollow : MonoBehaviour
 {
-    public GameObject player;
-    public Vector3 offset = new Vector3(0, 0, 0);
-    public float speed;
-    public bool lookAt;
+    public GameObject follower;
+    public Vector3 followerOffset = new Vector3(0, 0, 0);
     public Slider sliderSpeed;
+    public Toggle lookAt;
+    public float speed;
+    private Vector3 screenPoint;
+    private Vector3 offset;
 
-    void Start()
+    private void Start()
     {
-        transform.position = player.transform.position + offset;
+        follower.transform.position = transform.position + followerOffset;
     }
 
-    public void SetSpeed()
+    private void Update()
     {
         speed = sliderSpeed.value;
-        Debug.Log("Speed = " + speed);
+        follower.transform.position = Vector3.Lerp(follower.transform.position, transform.position + followerOffset, speed);
+        if (lookAt.isOn) follower.transform.LookAt(transform.position);
     }
 
-    void Update()
+    private void OnMouseDown()
     {
-        speed = sliderSpeed.value;
-        if (lookAt) transform.LookAt(player.transform.position);
-        transform.position = Vector3.Lerp(transform.position, player.transform.position + offset, speed);
+        screenPoint = Camera.main.WorldToScreenPoint(transform.position);
+        offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+    }
+
+    private void OnMouseDrag()
+    {
+        Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+        Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
+        transform.position = curPosition;
     }
 }
 ```
