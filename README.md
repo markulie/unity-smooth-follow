@@ -1,4 +1,4 @@
-# Unity Smooth Follow with Lerp
+# Smooth Follow with Lerp for Unity
 
 Demo: https://markulie.github.io/smoothfollow.html
 <br>
