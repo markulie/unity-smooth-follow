@@ -1,9 +1,5 @@
 # Smooth Follow with Lerp for Unity
 
-Demo: https://markulie.github.io/smoothfollow.html
-<br>
-Video: https://www.youtube.com/watch?v=Pyq96JsfiyA
-
 ```c#
 private void Update()
 {
